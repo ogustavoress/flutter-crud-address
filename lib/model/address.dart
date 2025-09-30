@@ -16,4 +16,16 @@ class Address {
     required this.uf,
     required this.tipo
   });
+
+  factory Address.fromJson(Map<String, dynamic> json) {
+    return Address(
+        id: json['id'],
+        nomeUsuario: json['nomeUsuario'],
+        cep: json['cep'],
+        logradouro: json['logradouro'],
+        bairro: json['bairro'],
+        uf: json['uf'],
+        tipo: json['tipo']
+    );
+  }
 }
