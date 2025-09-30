@@ -4,8 +4,8 @@ class Address {
   final String cep;
   final String logradouro;
   final String bairro;
+  final String cidade;
   final String uf;
-  final String tipo;
 
   Address({
     required this.id,
@@ -13,8 +13,8 @@ class Address {
     required this.cep,
     required this.logradouro,
     required this.bairro,
+    required this.cidade,
     required this.uf,
-    required this.tipo
   });
 
   factory Address.fromJson(Map<String, dynamic> json) {

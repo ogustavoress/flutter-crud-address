@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage>{
-  List<Address> address = [];
+  List<Address> addresses = [];
 
   @override
   void initState() {
@@ -23,7 +23,30 @@ class _HomePageState extends State<HomePage>{
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Endereços"),
+      ),
+      body: ListView.builder(
+        itemCount: addresses.length,
+        itemBuilder: (context, index) {
+          final addr = addresses[index];
+          return ListTile(
+            title: Text(addr.nomeUsuario),
+            subtitle: Text(
+                "${addr.logradouro}, ${addr.bairro}, "
+                "${addr.cidade}/${addr.uf},"
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () => goToForm(address: addr),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => goToForm(),
+        child: const Icon(Icons.add),
+      ),
+    );
   }
 
   Future<void> fetchAddresses() async {
@@ -31,9 +54,17 @@ class _HomePageState extends State<HomePage>{
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       setState(() {
-        address = data.map((e) => Address.fromJson(e)).toList();
+        addresses = data.map((e) => Address.fromJson(e)).toList();
       });
     }
+  }
+
+  void goToForm({Address? address}) async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => AddressFormPage(address: address)),
+    );
+    fetchAddresses();
   }
 }
 
