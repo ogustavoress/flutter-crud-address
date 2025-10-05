@@ -14,6 +14,14 @@ class AddressFormPage extends StatefulWidget {
 
 class _AddressFormPageState extends State<AddressFormPage> {
   final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController nomeController = TextEditingController();
+  final TextEditingController logradouroController = TextEditingController();
+  final TextEditingController bairroController = TextEditingController();
+  final TextEditingController cepController = TextEditingController();
+  final TextEditingController cidadeController = TextEditingController();
+  final TextEditingController ufController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container();
