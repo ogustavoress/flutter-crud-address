@@ -13,6 +13,7 @@ class AddressFormPage extends StatefulWidget {
 }
 
 class _AddressFormPageState extends State<AddressFormPage> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Container();
