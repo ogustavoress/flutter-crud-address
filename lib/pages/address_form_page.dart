@@ -161,6 +161,11 @@ class _AddressFormPageState extends State<AddressFormPage> {
                 decoration: const InputDecoration(labelText: "UF"),
                 validator: (v) => (v == null || v.isEmpty) ? 'Preencha o UF' : null,
               ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: saveAddress,
+                child: const Text("Salvar"),
+              )
             ],
           )
         ),
