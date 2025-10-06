@@ -127,6 +127,20 @@ class _AddressFormPageState extends State<AddressFormPage> {
                 ),
                 validator: (v) => (v == null || v.isEmpty) ? 'Preencha o nome' : null,
               ),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      controller: cepController,
+                      decoration: const InputDecoration(labelText: "CEP"),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: fetchCep,
+                    icon: const Icon(Icons.search),
+                  )
+                ],
+              ),
             ],
           )
         ),
