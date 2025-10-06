@@ -120,7 +120,13 @@ class _AddressFormPageState extends State<AddressFormPage> {
         child: Form(
           child: ListView(
             children: [
-              /* CAMPOS DO FORMULÁRIO*/
+              TextFormField(
+                controller: nomeController,
+                decoration: const InputDecoration(
+                  labelText: "Nome do usuário",
+                ),
+                validator: (v) => (v == null || v.isEmpty) ? 'Preencha o nome' : null,
+              ),
             ],
           )
         ),
