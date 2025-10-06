@@ -90,6 +90,22 @@ class _AddressFormPageState extends State<AddressFormPage> {
       ));
     }
   }
+  Future<bool> showConfirmDialog(BuildContext context) async {
+    return await showDialog<bool> (
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text("Confirmação"),
+        content: const Text("Deseja realmente excluir esse endereço?"),
+        actions: [
+          TextButton(
+              onPressed: Navigator.pop(ctx, false),
+              child: const Text("Excluir"),
+          ),
+        ],
+      ),
+    ) ??
+    false;
+  }
 
   @override
   Widget build(BuildContext context) {
