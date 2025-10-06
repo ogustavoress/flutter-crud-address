@@ -23,6 +23,18 @@ class _AddressFormPageState extends State<AddressFormPage> {
   final TextEditingController ufController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.address!= null) {
+      nomeController.text = widget.address!.nomeUsuario;
+      logradouroController.text = widget.address!.logradouro;
+      bairroController.text = widget.address!.bairro;
+      cepController.text = widget.address!.cep;
+      cidadeController.text = widget.address!.cidade;
+      ufController.text = widget.address!.uf;
+    }
+  }
+  @override
   Widget build(BuildContext context) {
     return Container();
   }
