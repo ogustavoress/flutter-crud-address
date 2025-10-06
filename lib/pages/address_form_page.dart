@@ -109,6 +109,22 @@ class _AddressFormPageState extends State<AddressFormPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final isEditing = widget.address != null;
+    
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(isEditing ? "Editar endereço" : "Novo endereço"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          child: ListView(
+            children: [
+              /* CAMPOS DO FORMULÁRIO*/
+            ],
+          )
+        ),
+      ),
+    );
   }
 }
