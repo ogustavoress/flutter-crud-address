@@ -141,6 +141,26 @@ class _AddressFormPageState extends State<AddressFormPage> {
                   )
                 ],
               ),
+              TextFormField(
+                controller: logradouroController,
+                decoration: const InputDecoration(labelText: "Logradouro"),
+                validator: (v) => (v == null || v.isEmpty) ? 'Preencha o logradouro' : null,
+              ),
+              TextFormField(
+                controller: bairroController,
+                decoration: const InputDecoration(labelText: "Bairro"),
+                validator: (v) => (v == null || v.isEmpty) ? 'Preencha o bairro' : null,
+              ),
+              TextFormField(
+                controller: cidadeController,
+                decoration: const InputDecoration(labelText: "Cidade"),
+                validator: (v) => (v == null || v.isEmpty) ? 'Preencha a cidadde' : null,
+              ),
+              TextFormField(
+                controller: ufController,
+                decoration: const InputDecoration(labelText: "UF"),
+                validator: (v) => (v == null || v.isEmpty) ? 'Preencha o UF' : null,
+              ),
             ],
           )
         ),
