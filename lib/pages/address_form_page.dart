@@ -1,5 +1,11 @@
+import 'dart:convert';
+import 'dart:ffi';
+
+import 'package:crud_address_app/api_config.dart';
 import 'package:crud_address_app/model/address.dart';
 import 'package:flutter/material.dart';
+
+import 'package:http/http.dart' as http;
 
 class AddressFormPage extends StatefulWidget {
   final Address? address;
@@ -34,6 +40,40 @@ class _AddressFormPageState extends State<AddressFormPage> {
       ufController.text = widget.address!.uf;
     }
   }
+
+  Future<void> saveAddress() async {
+    if(_formKey.currentState!.validate()) {
+      final Map<String, dynamic> data = {
+        "nomeUsuario": nomeController.text,
+        "logradouro": logradouroController.text,
+        "bairro": bairroController.text,
+        "cidade": cidadeController.text,
+        "uf": ufController.text,
+      };
+
+      if (widget.address ==null) {
+        await http.post(
+          Uri.parse(ApiConfig.addresses()),
+          headers: {"Content-Type": "application/json"},
+          body: json.encode(data),
+        );
+      } else{
+        await http.put(
+          Uri.parse(ApiConfig.addressById(widget.address!.id as Int)),
+          headers: {"Content-Type": "application/json"},
+          body: json.encode(data),
+        );
+      }
+
+      if (mounted) Navigator.pop(context);
+      else {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Falha ao salvar')));
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container();
