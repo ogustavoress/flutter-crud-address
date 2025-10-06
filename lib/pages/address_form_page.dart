@@ -74,6 +74,23 @@ class _AddressFormPageState extends State<AddressFormPage> {
     }
   }
 
+  Future<void> deleteAddress() async {
+    if(widget.address == null) {
+      return;
+    }
+    final response = await http.delete(
+      Uri.parse(ApiConfig.addressById(widget.address!.id as Int)),
+    );
+
+    if(response.statusCode == 200) {
+      if(mounted) Navigator.pop(context);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Erro ao excluir endereço")
+      ));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container();
