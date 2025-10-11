@@ -187,4 +187,15 @@ class _AddressFormPageState extends State<AddressFormPage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    nomeController.dispose();
+    cepController.dispose();
+    logradouroController.dispose();
+    bairroController.dispose();
+    cidadeController.dispose();
+    ufController.dispose();
+    super.dispose();
+  }
 }
