@@ -90,6 +90,37 @@ class _AddressFormPageState extends State<AddressFormPage> {
       ));
     }
   }
+
+  Future<void> fetchCep() async {
+    final cep = cepController.text.trim();
+
+    if(cep.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("Digite um CEP válido")
+        ),
+      );
+      return;
+    }
+
+    final response = await http.get(Uri.parse(ApiConfig.cep(cep)));
+
+    if(response.statusCode == 200) {
+      final data = json.decode(response.body);
+
+      setState(() {
+        logradouroController.text = data["logradouro"] ?? "";
+        bairroController.text = data["bairro"] ?? "";
+        cidadeController.text = data["cidade"] ?? "";
+        ufController.text = data["uf"] ?? "";
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("CEP não encontrado")),
+      );
+    }
+  }
+
   Future<bool> showConfirmDialog(BuildContext context) async {
     return await showDialog<bool> (
       context: context,
