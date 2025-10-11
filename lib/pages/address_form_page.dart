@@ -165,7 +165,22 @@ class _AddressFormPageState extends State<AddressFormPage> {
               ElevatedButton(
                 onPressed: saveAddress,
                 child: const Text("Salvar"),
-              )
+              ),
+              if (isEditing) ...[
+                const SizedBox(height: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red
+                  ),
+                  onPressed: () async {
+                    final confirm = await showConfirmDialog(context);
+                    if (confirm == true) {
+                      deleteAddress();
+                    }
+                  },
+                  child: const Text("Excluir"),
+                ),
+              ],
             ],
           )
         ),
